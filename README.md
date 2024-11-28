@@ -23,32 +23,36 @@ A Python-based application that automatically organizes your desktop files into 
 
 ```bash
 pip install schedule
-How to Run
-Clone the repository:
+```
 
-bash
-Copy code
-git clone https://github.com/jorge-allende/DesktopCleaner.git
-cd DesktopCleaner
-Run the script:
+## How to Run
 
-bash
-Copy code
-python3 desktop_cleaner.py
-The script will:
-Organize your desktop files into categorized folders.
-Create a Screenshots folder for macOS screenshots.
-Automation
-The application uses the schedule library to run automatically every day at 8:00 AM. You can modify the time by editing the line:
+1. Clone the repository:
 
-python
-Copy code
+    ```bash
+    git clone https://github.com/jorge-allende/DesktopCleaner.git
+    cd DesktopCleaner
+    ```
+
+2. Run the script:
+
+    ```bash
+    python3 desktop_cleaner.py
+    ```
+
+## Automation
+
+The application uses the `schedule` library to run automatically every day at **8:00 AM**. You can modify the time by editing the following line in the script:
+
+```python
 schedule.every().day.at("08:00").do(organize_desktop)
-Customization
-To add or modify file categories, update the FILE_TYPES dictionary in the script:
+```
 
-python
-Copy code
+## Customization
+
+To add or modify file categories, update the `FILE_TYPES` dictionary in the script:
+
+```python
 FILE_TYPES = {
     "Images": [".jpg", ".jpeg", ".png", ".gif", ".psd"],
     "Documents": [".pdf", ".docx", ".xlsx", ".csv", ".txt"],
@@ -56,9 +60,11 @@ FILE_TYPES = {
     "Screenshots": [],  # For screenshots specifically
     "Others": []
 }
-How It Works
-The script scans the files on your desktop.
-It categorizes the files based on their extensions or filenames.
-It creates the required folders (if not already present) and moves files accordingly.
-Logs actions to the terminal (e.g., Moved example.jpg to Images).
 ```
+
+## How It Works
+
+1. The script scans the files on your desktop.
+2. It categorizes the files based on their extensions or filenames.
+3. It creates the required folders (if not already present) and moves files accordingly.
+4. Logs actions to the terminal (e.g., `Moved example.jpg to Images`).
