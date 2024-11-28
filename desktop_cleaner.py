@@ -8,6 +8,7 @@ FILE_TYPES = {
     "Images": [".jpg", ".jpeg", ".png", ".gif", ".psd"],
     "Documents": [".pdf", ".docx", ".doc", ".xlsx", ".csv", ".txt"],
     "Videos": [".mp4", ".mkv", ".flv", "avi"],
+    "Screenshots": [],
     "Others": []
 }
 
@@ -25,15 +26,19 @@ def organize_desktop():
         if os.path.isdir(file_path):
             continue
 
+        # Check for screenshots
+        if filename.lower().startswith("screenshot"):
+            folder_name = "Screenshots"
+        else:
         # Find file extension
-        _, ext = os.path.splitext(filename)
+            _, ext = os.path.splitext(filename)
 
-        # Match file extension to a category
-        folder_name = "Others"
-        for category, extensions in FILE_TYPES.items():
-            if ext.lower() in extensions:
-                folder_name = category
-                break
+            # Match file extension to a category
+            folder_name = "Others"
+            for category, extensions in FILE_TYPES.items():
+                if ext.lower() in extensions:
+                    folder_name = category
+                    break
 
         # Create the category folder if it doesn't exist
         category_path = os.path.join(desktop_path, folder_name)
