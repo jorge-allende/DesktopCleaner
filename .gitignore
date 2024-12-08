@@ -2,3 +2,6 @@
 dist/
 build/
 *.spec
+
+# Ignore macOS system files
+.DS_Store
