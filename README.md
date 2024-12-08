@@ -1,6 +1,6 @@
 # Desktop Cleaner
 
-A Python-based application that automatically organizes your desktop files into categorized folders, making it clutter-free and easy to navigate. The app includes automation to run daily at a specific time and supports custom rules for organizing files, including screenshots.
+A Python-based application that organizes your desktop files into categorized folders, making it clutter-free and easy to navigate. This tool supports manual execution for immediate cleanup and can be automated using system-level tools for convenience.
 
 ## Features
 
@@ -34,19 +34,51 @@ pip install schedule
     cd DesktopCleaner
     ```
 
-2. Run the script:
+2. Run the script for manual cleanup:
 
     ```bash
     python3 desktop_cleaner.py
     ```
+    This mode:
+   - Scans your desktop.
+   - Organizes files into categorized folders.
+   - Logs actions to the terminal (e.g., `Moved example.jpg to Images`).
 
-## Automation
+## Automate the Script (Optional)
 
-The application uses the `schedule` library to run automatically every day at **8:00 AM**. You can modify the time by editing the following line in the script:
+### **For Linux/macOS (Using Cron):**
 
-```python
-schedule.every().day.at("08:00").do(organize_desktop)
-```
+1. Open the crontab editor:
+    ```bash
+    crontab -e
+    ```
+
+2. Add the following line to schedule the script to run daily at **8:00 AM**:
+    ```bash
+    0 8 * * * python3 /path/to/DesktopCleaner/desktop_cleaner.py
+    ```
+   Replace `/path/to/DesktopCleaner/desktop_cleaner.py` with the full path to the script.
+
+3. Save and exit. The script will now run automatically every day at **8:00 AM**.
+
+### **For Windows (Using Task Scheduler):**
+
+1. Open **Task Scheduler**:
+   - Press `Win + S`, type "Task Scheduler," and open it.
+
+2. Create a new task:
+   - Click on `Create Basic Task`.
+   - Name the task (e.g., "DesktopCleaner Daily").
+   - Select `Daily` and set the time (e.g., **8:00 AM**).
+
+3. Set the action:
+   - Choose `Start a Program`.
+   - Enter the path to your Python executable (e.g., `C:\Users\YourUsername\AppData\Local\Programs\Python\Python312\python.exe`).
+   - Add the script as an argument (e.g., `"C:\path\to\DesktopCleaner\desktop_cleaner.py"`).
+
+4. Save and test:
+   - Save the task.
+   - Right-click the task and select `Run` to test it.
 
 ## Customization
 
@@ -64,7 +96,14 @@ FILE_TYPES = {
 
 ## How It Works
 
-1. The script scans the files on your desktop.
-2. It categorizes the files based on their extensions or filenames.
-3. It creates the required folders (if not already present) and moves files accordingly.
-4. Logs actions to the terminal (e.g., `Moved example.jpg to Images`).
+### One-Time Cleanup:
+- The script scans your desktop for files.
+- It categorizes the files based on their extensions or filenames.
+- It creates folders if they don’t already exist.
+- It moves files into the appropriate folders and logs actions to the terminal.
+
+### Scheduled Automation:
+- You can automate the script using:
+  - **Cron** (Linux/macOS): Schedule it to run daily at a specific time.
+  - **Task Scheduler** (Windows): Set it up to run daily at a specific time.
+
