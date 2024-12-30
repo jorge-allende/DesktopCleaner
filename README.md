@@ -119,3 +119,14 @@ FILE_TYPES = {
 - You can automate the script using:
   - **Cron** (Linux/macOS): Schedule it to run daily at a specific time.
   - **Task Scheduler** (Windows): Set it up to run daily at a specific time.
+
+## Logs
+
+Logs are saved in `desktop_cleaner.log` in the project directory.
+
+### Example Log Entry:
+
+```yaml
+2024-12-29 14:23:45,678 - INFO - Moved photo1.jpg to Images
+2024-12-29 14:23:46,123 - INFO - Created folder: Images
+```
